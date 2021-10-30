@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users with Templates</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="top">
+            <H1>All Users</H1>
+            <table>
+                <tr>
+                    <th id='one'>ID</th>
+                    <th id='two'> Name</th>
+                    <th id='two'>Email</th>
+                    <th id='one'>Age</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.first_name}} {{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.age}}</td>
+                </tr>
+                {% endfor %}    
+            </table>
+        </div>
+        <div id="bottom">
+            <h1>Add a User</h1>
+            <form action="/post" method="post">
+                {% csrf_token %}
+                <div id="left">
+                    <label for="first_name">First name:</label>
+                    <input type="text" id="first_name" name="first_name" value="Michael">
+                    <br>
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" value="email@email.com">
+                </div>
+                <div id="right">
+                    <label for="last_name">Last name:</label>
+                    <input type="text" id="last_name" name="last_name" value="DuWors">
+                    <br>
+                    <label for="age">Age:</label>
+                    <input type="text" id="age" name="age" value="24">
+                </div>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
